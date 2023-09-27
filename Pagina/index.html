@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Busqueda</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+</head>
+<body>
+    <button><a href="./index.html">Inicio</a></button>
+    <button><a href="./modificar.html">Modificar</a></button>
+    <button><a href="./eliminar.html">Eliminar</a></button>
+    <button><a href="./crear.html">Crear</a></button>
+
+    <h1>Pagina de busqueda</h1>
+    <form method="post" action="./paginaBusqueda/buscarPorId.php" class="formSearch">
+        <h1>Buscar por Id</h1>
+        <input type="text" name="busqueda" placeholder="Ingresa tu búsqueda" class="inputSearch">
+        <input type="submit" value="Buscar" class="searchButton">
+    </form>
+    <form method="post" action="./paginaBusqueda/buscarPorEntry.php" class="formSearch">
+        <h1>Buscar por Entry</h1>
+        <input type="text" name="busqueda1" placeholder="Ingresa tu entry" class="inputSearch">        
+        <input type="submit" value="Buscar" class="searchButton">
+    </form>
+    <form method="post" action="./paginaBusqueda/buscarEntryName.php" class="formSearch">
+        <h1>Buscar por Entry Name</h1>
+        <input type="text" name="busqueda2" placeholder="Ingresa tu entry name" class="inputSearch">        
+        <input type="submit" value="Buscar" class="searchButton">
+    </form>
+    <form method="post" action="./paginaBusqueda/buscarProteinNames.php" class="formSearch">
+        <h1>Buscar por Protein Name</h1>
+        <input type="text" name="busqueda3" placeholder="Ingresa tu protein name" class="inputSearch">        
+        <input type="submit" value="Buscar" class="searchButton">
+    </form>
+    <form method="post" action="./paginaBusqueda/buscarGeneNames.php" class="formSearch">
+        <h1>Buscar por Gene Name</h1>
+        <input type="text" name="busqueda4" placeholder="Ingresa tu gene name" class="inputSearch">        
+        <input type="submit" value="Buscar" class="searchButton">
+    </form>
+    <form method="post" action="./paginaBusqueda/buscarOrganism.php" class="formSearch">
+        <h1>Buscar por Organism</h1>
+        <input type="text" name="busqueda5" placeholder="Ingresa tu organismo" class="inputSearch">        
+        <input type="submit" value="Buscar" class="searchButton">
+    </form>
+</body>
+</html>

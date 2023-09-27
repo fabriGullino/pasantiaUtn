@@ -1,0 +1,63 @@
+* {
+    font-size: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+table {
+    border: #fefefe 2px solid;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    border-collapse: collapse;
+
+}
+
+td {
+    border: #457b9d 2px solid ;
+    padding: 1rem;
+    text-align: center;
+    border-radius: 1rem;
+}
+
+/*----Formulario para buscar datos----*/
+
+.formSearch {
+    margin-top: 1rem;
+    padding: 1rem;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: #457b9d 2px solid;
+    border-radius: 0.2rem;
+}
+
+.inputSearch {
+    border: #457b9d 2px solid;
+    border-radius: 0.2rem;
+    width: 19rem;
+    padding: 0.5rem;
+}
+
+
+
+.searchButton {
+    background-color: #fefefe;
+    padding: 0.5rem;
+    color: #457b9d;
+    border: 2px #457b9d solid;
+    border-radius: 0.2rem;
+    transition: 500ms;
+
+}
+
+.searchButton:hover {
+    background-color: #457b9d;
+    padding: 0.5rem;
+    color: #fefefe;
+    border: 2px #457b9d solid;
+    border-radius: 0.2rem;
+    transition: 500ms;
+}
+
+@media (min-width: 600px) and (max-width: 800px) {
+    /* estilos para pantallas con un ancho entre 600px y 800px */
+   }
