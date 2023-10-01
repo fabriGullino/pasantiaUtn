@@ -1,0 +1,362 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+  }
+  
+body{
+    margin-left: 80px;
+    margin-top: 80px;
+    transition: margin-left 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+    transition: background-color 0.5s ease-in-out;
+}
+/* Estilo de la sección para resaltar el desplazamiento */
+section {
+    padding: 100px;
+    margin: 20px;
+    background-color: #f0f0f0;
+}
+/* Cambia el fondo al hacer clic en un enlace de navegación */
+nav a {
+    text-decoration: none;
+    color: blue;
+    transition: color 0.5s ease-in-out;
+  }
+  
+  nav a:hover {
+    color: red;
+}
+
+main{
+    padding: 20px;
+}
+
+header{
+    width: 100%;
+    height: 80px;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 200;
+}
+.icon__menu{
+    width: 50px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(10px);
+}
+
+.icon__menu i{
+    font-size: 20px;
+    cursor: pointer;
+    position: absolute;
+}
+
+.menu__side{
+    width: 80px;
+    height: 100%;
+    background: #1783db;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: white;
+    font-size: 18px;
+    z-index: 300;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-right: 20px solid #1783db;
+    transition: all 300ms cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
+/*flecha */
+.nav{
+    width: 300px;
+}
+
+.nav__link{
+    color: white;
+    display: block;
+    padding: 15px 0;
+    text-decoration: none;
+}
+.list__img2{
+    margin-left: 10px;
+    margin-top: -50px;
+}
+.nav__link--inside{
+    border-radius: 6px ;
+    padding-left: 20px;
+    text-align: left;
+    align-items: center;
+}
+
+.nav__link--inside:hover{
+    background: #1783db;
+}
+
+.list{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 0 16px 16px 0;
+    background: #1783db;
+}
+
+.list__item{
+    list-style: none;
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+}
+
+.list__img{
+    color: #000;
+}
+
+.list__item--click{
+    cursor: pointer;
+    align-items: center;
+}
+
+.list__button{
+    display: flex;
+    align-items: center;
+    gap: 4mm;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.arrow .list__arrow{
+    transform: rotate(90deg);
+}
+
+.list__arrow{
+    margin-left: auto;
+    transition: transform .3s;
+}
+
+.list__show{
+    width: 80%;
+    justify-content: center;
+    margin-left: auto;
+    border-left: 2px solid #070707;
+    list-style: none;
+    transition: height .4s;
+    height: 0;
+}
+
+/*Ocultar scroll para chrome, safari y opera*/
+.menu__side::-webkit-scrollbar{
+    display: none;
+}
+
+/*Ocultar scroll para IE, Edge y Firefox*/
+.menu__side{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+
+.name__page{
+    padding: 17px;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.name__menu{
+    margin-left: 10px;
+}
+.icon__UTN{
+    width: 50px;
+    height: 100%;
+    display: flex;
+}
+.name__page i{
+    width: 40px;
+    margin-right: 30px;
+}
+
+.options__menu{
+    padding: 20px 30px;
+    position: absolute;
+    top: 80px;
+}
+
+.options__menu a{
+    color: #ffffffb2;
+    cursor: default;
+    display: block;
+    position: relative;
+    transition: color 300ms;
+}
+
+.options__menu a:hover{
+    color: white;
+}
+
+.options__menu .option{
+    padding: 20px 0px;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.options__menu .option i{
+    width: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.options__menu .option h4{
+    font-weight: 300;
+    cursor: pointer;
+}
+
+a.selected{
+    color: #fff;
+}
+
+.selected:before{
+    content: '';
+    width: 3px;
+    height: 80%;
+    background: white;
+    position: absolute;
+    top: 10%;
+    left: -30px;
+}
+
+/*Clases para usar en JavaScript*/
+
+.body_move{
+    margin-left: 250px;
+}
+
+.menu__side_move{
+    width: 250px;
+}
+
+/*Busqueda*/
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.Logo {
+    max-width: 100%; 
+}
+
+h1 {
+    color: #007BFF;
+    margin-bottom: 20px;
+}
+.tools-container {
+    display: flex;
+
+    margin-bottom: 20px;
+}
+input[type="text"] {
+    width: 60%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+button {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px solid #ccc;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+th {
+    background-color: #007BFF;
+    color: #fff;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tr:hover {
+    background-color: #ddd;
+}
+
+/*Eliminar*/
+form {
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    align-items: center;
+}
+button:hover {
+    background-color: #0056b3;
+}
+#result {
+    margin: 20px auto;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/*Carrito*/
+#product-list {
+    list-style-type: none;
+    padding: 0;
+}
+.product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+
+
+@media screen and (max-width: 760px){
+    .body_move{
+        margin-left: 0px;
+    }
+
+    .menu__side_move{
+        width: 80px;
+        left: -80px;
+    }
+}
