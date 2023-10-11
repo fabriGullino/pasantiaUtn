@@ -5,15 +5,18 @@ import tkinter.font as tkFont
 from PIL import Image, ImageTk
 import os
 
+try:
+    conexion = mysql.connector.connect(
+        host="localhost",
+        user="root",
+        password="",
+        database="gramene"
+    )
 
-conexion = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="",
-    database="gramene"
-)
+    cursor = conexion.cursor()
 
-cursor = conexion.cursor()
+except Exception as e:
+    messagebox.showerror("Error", f"Ocurrió un error al conectarse a la base de datos.")
 
 def centrar_ventana(ventana):
     ventana.update_idletasks()
@@ -44,8 +47,10 @@ def ventanaAcceso():
             messagebox.showerror("Error de acceso", "Nombre de usuario o contraseña incorrectos")
 
     root = tk.Tk()
-    root.title("Bienvenido")
+    root.title("Utn DB Manager")
     root.geometry("300x400")
+    root.resizable(False, False)
+    root.configure(bg="#12355B")
 
     centrar_ventana(root)
 
@@ -62,29 +67,29 @@ def ventanaAcceso():
 
     imagen_gif = ImageTk.PhotoImage(imagen_redimensionada)
 
-    fontText = tkFont.Font(family="Arial", size=13)
+    fontText = ("Roboto", 12, "bold")
 
-    accessFrame = tk.Frame(root)
+    accessFrame = tk.Frame(root, background="#12355B")
     accessFrame.pack(pady=30)
 
 
-    userLabel = tk.Label(accessFrame, text="Usuario", font=fontText)
+    userLabel = tk.Label(accessFrame, text="Usuario", font=fontText, background="#12355B", foreground="#fefefe")
     userLabel.pack(pady=10)
-    entry_user = tk.Entry(accessFrame, width=30, font=fontText)
+    entry_user = tk.Entry(accessFrame, width=28, font=fontText)
     entry_user.pack()
 
 
-    passLabel = tk.Label(accessFrame, text="Contraseña", font=fontText)
+    passLabel = tk.Label(accessFrame, text="Contraseña", font=fontText, background="#12355B", foreground="#fefefe")
     passLabel.pack(pady=10)
-    entry_pass = tk.Entry(accessFrame, width=30, font=fontText, show="*")
+    entry_pass = tk.Entry(accessFrame, width=28, font=fontText, show="•")
     entry_pass.pack()
 
 
-    formSub = tk.Button(accessFrame, text="Ingresar", width=30, height=1, command=acceso, font=fontText)
+    formSub = tk.Button(accessFrame, text="Ingresar", width=25, height=1, command=acceso, font=fontText, background="#12355B", foreground="#fefefe" )
     formSub.pack(pady=20)
 
-    imageLabel = tk.Label(accessFrame, image=imagen_gif)
-    imageLabel.pack(pady=10)
+    imageLabel = tk.Label(accessFrame, image=imagen_gif, borderwidth=0)
+    imageLabel.pack(pady=15)
 
     root.mainloop()
 
@@ -93,13 +98,72 @@ def ventanaInicio():
     root = tk.Toplevel()
     root.title("Inicio")
     root.geometry("1024x384")
+    root.resizable(False, False)
+    root.configure(bg="#12355B")
 
     centrar_ventana(root)
 
-    icon = os.path.abspath("assets/inicio.ico")
+    icon = os.path.abspath("assets/utnLogotypee.ico")
 
     root.iconbitmap(icon)
 
+    def abrir_primera_ventana():
+        root.withdraw()
+        ventanaInicio()
+    def abrir_segunda_ventana():
+        root.withdraw()
+        ventanaAdministracion()
+    def abrir_tercera_ventana():
+        root.withdraw()
+        ventanaUsuarios()
+
+    image = os.path.abspath("assets/utnLogotype.png")
+
+    utnLogo = Image.open(image)
+
+    nuevo_tamano = (200, 200)
+    imagen_redimensionada = utnLogo.resize(nuevo_tamano)
+
+    imagen_gif = ImageTk.PhotoImage(imagen_redimensionada)
+
+    nav_frame = tk.Frame(root)
+    nav_frame.pack()
+
+    fontText = ("Roboto", 12, "bold")
+
+    button1st = tk.Button(nav_frame, text="Inicio", width=34, height=2, command=abrir_primera_ventana, background="#12355B", foreground="#fefefe", borderwidth=0, font=fontText)
+    button2nd = tk.Button(nav_frame, text="Administracion", width=34, height=2, command=abrir_segunda_ventana, background="#12355B", foreground="#fefefe", borderwidth=0, font=fontText)
+    button3rd = tk.Button(nav_frame, text="Usuarios", width=34, height=2, command=abrir_tercera_ventana, background="#12355B", foreground="#fefefe", borderwidth=0, font=fontText)
+
+    button1st.pack(side="left", padx=1, pady=1)
+    button2nd.pack(side="left", padx=1, pady=1)
+    button3rd.pack(side="left", padx=1, pady=1)
+
+    imageFrame = tk.Frame(root, background="#12355B")
+    imageFrame.pack(pady=50)
+
+    imageLabel = tk.Label(imageFrame, image=imagen_gif, borderwidth=0)
+    imageLabel.pack(pady=15)
+
+    root.mainloop()
+
+def ventanaAdministracion():
+
+    root = tk.Toplevel()
+    root.title("Administracion")
+    root.geometry("1074x500")
+    root.resizable(False, False)
+    root.configure(bg="#12355B")
+
+    centrar_ventana(root)
+
+    icon = os.path.abspath("assets/utnLogotypee.ico")
+
+    root.iconbitmap(icon)
+
+    def abrir_primera_ventana():
+        root.withdraw()
+        ventanaInicio()
     def abrir_segunda_ventana():
         root.withdraw()
         ventanaAdministracion()
@@ -110,41 +174,14 @@ def ventanaInicio():
     nav_frame = tk.Frame(root)
     nav_frame.pack()
 
-    button2nd = tk.Button(nav_frame, text="Administracion", width=75, height=3, command=abrir_segunda_ventana)
-    button3rd = tk.Button(nav_frame, text="Usuarios", width=75, height=3, command=abrir_tercera_ventana)
+    fontText = ("Roboto", 12, "bold")
 
-    button2nd.pack(side="left", padx=1, pady=1)
-    button3rd.pack(side="left", padx=1, pady=1)
-
-    root.mainloop()
-
-def ventanaAdministracion():
-
-    root = tk.Toplevel()
-    root.title("Administracion")
-    root.geometry("1074x500")
-
-    centrar_ventana(root)
-
-    icon = os.path.abspath("assets/administracion.ico")
-
-    root.iconbitmap(icon)
-
-    def volver_a_ventana_principal():
-        root.destroy()
-        ventanaInicio()
-
-    def abrir_tercera_ventana():
-        root.withdraw()
-        ventanaUsuarios()
-
-    nav_frame = tk.Frame(root)
-    nav_frame.pack()
-
-    button1st = tk.Button(nav_frame, text="Inicio", width=75, height=3, command=volver_a_ventana_principal)
-    button3rd = tk.Button(nav_frame, text="Usuarios", width=75, height=3, command=abrir_tercera_ventana)
+    button1st = tk.Button(nav_frame, text="Inicio", width=36, height=2, command=abrir_primera_ventana, background="#12355B", foreground="#fefefe", font=fontText, borderwidth=0)
+    button2nd = tk.Button(nav_frame, text="Administracion", width=36, height=2, command=abrir_segunda_ventana, background="#12355B", foreground="#fefefe", font=fontText, borderwidth=0)
+    button3rd = tk.Button(nav_frame, text="Usuarios", width=36, height=2, command=abrir_tercera_ventana, background="#12355B", foreground="#fefefe", font=fontText, borderwidth=0)
 
     button1st.pack(side="left", padx=1, pady=1)
+    button2nd.pack(side="left", padx=1, pady=1)
     button3rd.pack(side="left", padx=1, pady=1)
 
 
@@ -305,22 +342,22 @@ def ventanaAdministracion():
             tree.insert("", "end", values=registro)
 
 
-    searchFrame = tk.Frame(root)
+    searchFrame = tk.Frame(root, background="#12355B")
     searchFrame.pack(pady=10)
 
-    comboSearch = ttk.Combobox(searchFrame, values=["Entry", "Entry Name", "Protein Name", "Gene Name", "Length"], width=50)
-    comboSearch.pack(side="left", padx=10)
+    comboSearch = ttk.Combobox(searchFrame, values=["Entry", "Entry Name", "Protein Name", "Gene Name", "Length"], width=30)
+    comboSearch.pack(side="left", padx=30)
 
 
-    search = tk.Entry(searchFrame, width=50)
-    search.pack(side="left", padx=10)
+    search = tk.Entry(searchFrame, width=30, font=fontText)
+    search.pack(side="left", padx=30)
 
 
-    searchButton = tk.Button(searchFrame, text="Buscar", width=50, command=columnSearch)
-    searchButton.pack(side="left", padx=10)
+    searchButton = tk.Button(searchFrame, text="Buscar", width=30, command=columnSearch, font=fontText, background="#12355B", foreground="#fefefe")
+    searchButton.pack(side="left", padx=30)
 
 
-    tree_frame = tk.Frame(root)
+    tree_frame = tk.Frame(root, background="#12355B")
     tree_frame.pack(pady=10)
 
     tree = ttk.Treeview(tree_frame, columns=("ID", "Entry", "Reviewed", "Entry Name", "Protein Name", "Gene Name", "Organism", "Length"))
@@ -354,13 +391,13 @@ def ventanaAdministracion():
     tree_frame.grid_columnconfigure(0, weight=1)
 
 
-    textbox_frame = tk.Frame(root)
+    textbox_frame = tk.Frame(root, background="#12355B")
     textbox_frame.pack(pady=10)
 
     labels = ["Id", "Entry", "Reviewed", "Entry Name", "Protein Name", "Gene Name", "Organism", "Length"]
 
     for i in range(8):
-        label = tk.Label(textbox_frame, text=f"{labels[i]}")
+        label = tk.Label(textbox_frame, text=f"{labels[i]}", font=fontText, background="#12355B", foreground="#fefefe")
         label.grid(row=1, column=i, padx=5, pady=5)
         labels.append(label)
 
@@ -371,19 +408,19 @@ def ventanaAdministracion():
         text_var = tk.StringVar() 
         text_vars.append(text_var) 
 
-        textbox = tk.Entry(textbox_frame, textvariable=text_var, width=20)
-        textbox.grid(row=2, column=x, padx=2, pady=5)
+        textbox = tk.Entry(textbox_frame, textvariable=text_var, width=20, borderwidth=0)
+        textbox.grid(row=2, column=x, padx=5, pady=5)
         textboxes.append(textbox)  
 
     id_var, entry_var, reviewed_var, entry_name_var, protein_name_var, gene_name_var, organism_var, length_var = text_vars
 
-    btn_frame = tk.Frame(root)
+    btn_frame = tk.Frame(root, background="#12355B")
     btn_frame.pack(pady=10, padx=30)
 
-    btn_cargar_registro = tk.Button(btn_frame, text="Cargar Registro", command=cargarRegistro, width=20, height=2)
-    btn_modificar = tk.Button(btn_frame, text="Modificar Registro", command=modificarRegistro, width=20, height=2)
-    btn_eliminar = tk.Button(btn_frame, text="Eliminar Registro", command=eliminarRegistro, width=20, height=2)
-    btn_volcar = tk.Button(btn_frame, text="Buscar sin Filtros", command=volcarTodo, width=20, height=2)
+    btn_cargar_registro = tk.Button(btn_frame, text="Cargar Registro", command=cargarRegistro, width=20, height=2, font=fontText, background="#12355B", foreground="#fefefe")
+    btn_modificar = tk.Button(btn_frame, text="Modificar Registro", command=modificarRegistro, width=20, height=2, font=fontText, background="#12355B", foreground="#fefefe")
+    btn_eliminar = tk.Button(btn_frame, text="Eliminar Registro", command=eliminarRegistro, width=20, height=2, font=fontText, background="#12355B", foreground="#fefefe")
+    btn_volcar = tk.Button(btn_frame, text="Buscar sin Filtros", command=volcarTodo, width=20, height=2, font=fontText, background="#12355B", foreground="#fefefe")
 
     btn_cargar_registro.pack(side="left", padx=10, pady=10)
     btn_modificar.pack(side="left", padx=10, pady=10)
@@ -396,29 +433,37 @@ def ventanaUsuarios():
     root = tk.Toplevel()
     root.title("Usuarios")
     root.geometry("820x500")
+    root.resizable(False, False)
+    root.configure(bg="#12355B")
 
     centrar_ventana(root)
 
-    icon = os.path.abspath("assets/usuarios.ico")
+    icon = os.path.abspath("assets/utnLogotypee.ico")
 
     root.iconbitmap(icon)
 
-    def volver_a_ventana_principal():
-        root.destroy()  # Cierra la ventana secundaria
+    def abrir_primera_ventana():
+        root.withdraw()
         ventanaInicio()
-    
     def abrir_segunda_ventana():
-        root.withdraw()  # Oculta la ventana principal
+        root.withdraw()
         ventanaAdministracion()
+    def abrir_tercera_ventana():
+        root.withdraw()
+        ventanaUsuarios()
+
+    fontText = ("Roboto", 12, "bold")
 
     nav_frame = tk.Frame(root)
     nav_frame.pack()
 
-    button1st = tk.Button(nav_frame, text="Inicio", width=60, height=3, command=volver_a_ventana_principal)
-    button2nd = tk.Button(nav_frame, text="Administracion", width=60, height=3, command=abrir_segunda_ventana)
+    button1st = tk.Button(nav_frame, text="Inicio", width=27, height=2, command=abrir_primera_ventana, font=fontText, background="#12355B", foreground="#fefefe", borderwidth=0)
+    button2nd = tk.Button(nav_frame, text="Administracion", width=27, height=2, command=abrir_segunda_ventana, font=fontText, background="#12355B", foreground="#fefefe", borderwidth=0)
+    button3rd = tk.Button(nav_frame, text="Usuarios", width=27, height=2, command=abrir_tercera_ventana, font=fontText, background="#12355B", foreground="#fefefe", borderwidth=0)
 
     button1st.pack(side="left", padx=1, pady=1)
     button2nd.pack(side="left", padx=1, pady=1)
+    button3rd.pack(side="left", padx=1, pady=1)
 
     def actualizar_treeview():
         # Verificar si hay elementos en el Treeview antes de intentar eliminarlos
@@ -562,22 +607,22 @@ def ventanaUsuarios():
             tree.insert("", "end", values=registro)
 
 
-    searchFrame = tk.Frame(root)
+    searchFrame = tk.Frame(root, background="#12355B")
     searchFrame.pack(pady=10)
 
-    comboSearch = ttk.Combobox(searchFrame, values=["Usuario", "Contraseña"], width=35)
+    comboSearch = ttk.Combobox(searchFrame, values=["Usuario", "Contraseña"], width=30)
     comboSearch.pack(side="left", padx=17)
 
     # TextBox para mostrar los resultados
-    search = tk.Entry(searchFrame, width=35)
+    search = tk.Entry(searchFrame, width=30, font=fontText)
     search.pack(side="left", padx=17)
 
     # Botón para realizar la búsqueda
-    searchButton = tk.Button(searchFrame, text="Buscar", width=35, command=columnSearch)
+    searchButton = tk.Button(searchFrame, text="Buscar", width=30, height=1, command=columnSearch, font=fontText, background="#12355B", foreground="#fefefe")
     searchButton.pack(side="left", padx=17)
 
     # Treeview
-    tree_frame = tk.Frame(root)
+    tree_frame = tk.Frame(root, background="#12355B")
     tree_frame.pack(pady=10)
 
     tree = ttk.Treeview(tree_frame, columns=("Cod Usuario", "Usuario", "Contraseña"))
@@ -611,13 +656,13 @@ def ventanaUsuarios():
     tree_frame.grid_columnconfigure(0, weight=1)
 
     # Etiquetas y TextBox
-    textbox_frame = tk.Frame(root)
+    textbox_frame = tk.Frame(root, background="#12355B")
     textbox_frame.pack(pady=10)
 
-    labels = ["Codigo de Usuario", "Usuario", "Contraseña"]
+    labels = ["Cod de Usuario", "Usuario", "Contraseña"]
 
     for i in range(len(labels)):
-        label = tk.Label(textbox_frame, text=labels[i])
+        label = tk.Label(textbox_frame, text=labels[i], background="#12355B", foreground="#fefefe", font=fontText)
         label.grid(row=1, column=i, padx=10, pady=5)
         labels.append(label)
 
@@ -635,13 +680,13 @@ def ventanaUsuarios():
     # Asigna nombres a las variables StringVar
     cod_user_var, user_var, pass_var = text_vars
 
-    btn_frame = tk.Frame(root)
+    btn_frame = tk.Frame(root, background="#12355B")
     btn_frame.pack(pady=10, padx=2)
 
-    btn_cargar_registro = tk.Button(btn_frame, text="Cargar Registro", command=cargarRegistro, width=23, height=2)
-    btn_modificar = tk.Button(btn_frame, text="Modificar Registro", command=modificarRegistro, width=23, height=2)
-    btn_eliminar = tk.Button(btn_frame, text="Eliminar Registro", command=eliminarRegistro, width=23, height=2)
-    btn_volcar = tk.Button(btn_frame, text="Buscar sin Filtros", command=volcarTodo, width=23, height=2)
+    btn_cargar_registro = tk.Button(btn_frame, text="Cargar Registro", command=cargarRegistro, width=15, height=1, background="#12355B", foreground="#fefefe", font=fontText)
+    btn_modificar = tk.Button(btn_frame, text="Modificar Registro", command=modificarRegistro, width=15, height=1, background="#12355B", foreground="#fefefe", font=fontText)
+    btn_eliminar = tk.Button(btn_frame, text="Eliminar Registro", command=eliminarRegistro, width=15, height=1, background="#12355B", foreground="#fefefe", font=fontText)
+    btn_volcar = tk.Button(btn_frame, text="Buscar sin Filtros", command=volcarTodo, width=15, height=1, background="#12355B", foreground="#fefefe", font=fontText)
 
     btn_cargar_registro.pack(side="left", padx=10, pady=10)
     btn_modificar.pack(side="left", padx=10, pady=10)
@@ -653,5 +698,11 @@ def ventanaUsuarios():
 if __name__ == "__main__":
     ventanaAcceso()
 
-cursor.close()
-conexion.close()
+
+try:
+    cursor.close()
+    conexion.close()
+
+except Exception as e:
+    messagebox.showerror("Error", f"Ocurrió un error al cerrar la conexion a la base de datos.")
+
