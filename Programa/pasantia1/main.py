@@ -262,23 +262,26 @@ def ventanaAdministracion():
 
     def eliminarRegistro():
         id_to_delete = id_var.get()
-        valores = (id_to_delete,)
-        delete_query = "DELETE FROM tomate WHERE Id = %s"
-        confirmacion = messagebox.askyesno("Confirmación", "¿Está seguro que desea eliminar el registro?")
-        if confirmacion:
-            cursor.execute(delete_query, valores)
-            conexion.commit()
-            messagebox.showinfo("Exito", "El registro ha sido eliminado exitosamente.")
-            actualizar_treeview()
-
-            textCamp = [id_var, entry_var, reviewed_var, entry_name_var, protein_name_var, gene_name_var, organism_var, length_var]
-
-            for i in range(len(textCamp)):
-                nuevo_valor = "" 
-                textCamp[i].set(nuevo_valor)
-
+        if id_to_delete == "":
+            messagebox.showerror("Error", "El campo Id se encuentra vacio.")
         else:
-            messagebox.showinfo("Cancelacion", "El registro no sera eliminado.")
+            valores = (id_to_delete,)
+            delete_query = "DELETE FROM tomate WHERE Id = %s"
+            confirmacion = messagebox.askyesno("Confirmación", "¿Está seguro que desea eliminar el registro?")
+            if confirmacion:
+                cursor.execute(delete_query, valores)
+                conexion.commit()
+                messagebox.showinfo("Exito", "El registro ha sido eliminado exitosamente.")
+                actualizar_treeview()
+
+                textCamp = [id_var, entry_var, reviewed_var, entry_name_var, protein_name_var, gene_name_var, organism_var, length_var]
+
+                for i in range(len(textCamp)):
+                    nuevo_valor = "" 
+                    textCamp[i].set(nuevo_valor)
+
+            else:
+                messagebox.showinfo("Cancelacion", "El registro no sera eliminado.")
 
 
     def volcarTodo():
@@ -533,23 +536,26 @@ def ventanaUsuarios():
     # Función para eliminar un registro de la base de datos
     def eliminarRegistro():
         id_to_delete = cod_user_var.get()
-        valores = (id_to_delete,)
-        delete_query = "DELETE FROM usuarios WHERE cod_user = %s"
-        confirmacion = messagebox.askyesno("Confirmación", "¿Está seguro que desea eliminar el registro?")
-        if confirmacion:
-            cursor.execute(delete_query, valores)
-            conexion.commit()
-            messagebox.showinfo("Exito", "El registro ha sido eliminado exitosamente.")
-            actualizar_treeview()
-
-            textCamp = [cod_user_var, user_var, pass_var]
-
-            for i in range(len(textCamp)):
-                nuevo_valor = ""  # Reemplaza esto con el valor que deseas cargar
-                textCamp[i].set(nuevo_valor)
-
+        if id_to_delete == "":
+            messagebox.showerror("Error", "El campo Id se encuentra vacio.")
         else:
-            messagebox.showinfo("Cancelacion", "El registro no sera eliminado.")
+            valores = (id_to_delete,)
+            delete_query = "DELETE FROM usuarios WHERE cod_user = %s"
+            confirmacion = messagebox.askyesno("Confirmación", "¿Está seguro que desea eliminar el registro?")
+            if confirmacion:
+                cursor.execute(delete_query, valores)
+                conexion.commit()
+                messagebox.showinfo("Exito", "El registro ha sido eliminado exitosamente.")
+                actualizar_treeview()
+
+                textCamp = [cod_user_var, user_var, pass_var]
+
+                for i in range(len(textCamp)):
+                    nuevo_valor = ""  # Reemplaza esto con el valor que deseas cargar
+                    textCamp[i].set(nuevo_valor)
+
+            else:
+                messagebox.showinfo("Cancelacion", "El registro no sera eliminado.")
 
     # Función para volcar datos desde la base de datos al Treeview
     def volcarTodo():
