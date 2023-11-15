@@ -2,47 +2,151 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Busqueda</title>
+    <title>UTN</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://kit.fontawesome.com/eb496ab1a0.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/41bcea2ae3.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <button><a href="./index.html">Inicio</a></button>
-    <button><a href="./modificar.html">Modificar</a></button>
-    <button><a href="./eliminar.html">Eliminar</a></button>
-    <button><a href="./crear.html">Crear</a></button>
+<body id="body">
+    
+    <header>
+        <div class="icon__menu">
+            <i class="fas fa-bars" id="btn_open"></i>
+        </div>
+    </header>
 
-    <h1>Pagina de busqueda</h1>
-    <form method="post" action="./paginaBusqueda/buscarPorId.php" class="formSearch">
-        <h1>Buscar por Id</h1>
-        <input type="text" name="busqueda" placeholder="Ingresa tu búsqueda" class="inputSearch">
-        <input type="submit" value="Buscar" class="searchButton">
-    </form>
-    <form method="post" action="./paginaBusqueda/buscarPorEntry.php" class="formSearch">
-        <h1>Buscar por Entry</h1>
-        <input type="text" name="busqueda1" placeholder="Ingresa tu entry" class="inputSearch">        
-        <input type="submit" value="Buscar" class="searchButton">
-    </form>
-    <form method="post" action="./paginaBusqueda/buscarEntryName.php" class="formSearch">
-        <h1>Buscar por Entry Name</h1>
-        <input type="text" name="busqueda2" placeholder="Ingresa tu entry name" class="inputSearch">        
-        <input type="submit" value="Buscar" class="searchButton">
-    </form>
-    <form method="post" action="./paginaBusqueda/buscarProteinNames.php" class="formSearch">
-        <h1>Buscar por Protein Name</h1>
-        <input type="text" name="busqueda3" placeholder="Ingresa tu protein name" class="inputSearch">        
-        <input type="submit" value="Buscar" class="searchButton">
-    </form>
-    <form method="post" action="./paginaBusqueda/buscarGeneNames.php" class="formSearch">
-        <h1>Buscar por Gene Name</h1>
-        <input type="text" name="busqueda4" placeholder="Ingresa tu gene name" class="inputSearch">        
-        <input type="submit" value="Buscar" class="searchButton">
-    </form>
-    <form method="post" action="./paginaBusqueda/buscarOrganism.php" class="formSearch">
-        <h1>Buscar por Organism</h1>
-        <input type="text" name="busqueda5" placeholder="Ingresa tu organismo" class="inputSearch">        
-        <input type="submit" value="Buscar" class="searchButton">
-    </form>
+    <div class="menu__side" id="menu_side">
+
+        <div class="name__page">
+            <img src="assets/UTN_logo-removebg-preview.ico" class="icon__UTN"></img>
+            <a class="name__menu">Menu</a>
+        </div>
+
+        <div class="options__menu">	
+            
+            <ul class="list">
+
+                <li class="list__item">
+                    <div class="list__button">
+                        <img src="assets/home.svg" class="list__img">
+                        <a href="#inicio" class="nav__link">Inicio</a>
+                    </div>
+                </li>
+    
+                <li class="list__item list__item--click">
+                    <div class="list__button list__button--click">
+                        <img src="assets/herramientas.svg" class="list__img" id="btn_open">
+                        <a href="#" class="nav__link">Herramientas</a>
+                        <img src="assets/arrow.svg" class="list__arrow">
+                    </div>
+    
+                    <ul class="list__show">
+                        <li class="list__inside">
+                            <a href="#busca" class="nav__link nav__link--inside">Buscar<img src="assets/busca.svg" class="list__img2"></a>
+                            
+                        </li>
+                    </ul>
+    
+                </li>
+                <li class="list__item">
+                    <div class="list__button">
+                        <img src="assets/message.svg" class="list__img">
+                        <a href="#contacto" class="nav__link">Contacto</a>
+                    </div>
+                </li>
+    
+            </ul>
+        </div>
+    </div>
+
+    <main>
+        <!--Introduccion-->
+        <div class="container" >
+            <div class="logo">
+                <img src="assets/UTN_logo-removebg-preview.png" id="inicio">
+            </div>
+        <h1>--Introduccion--</h1><br>
+        <p>Esta pagina de codigo libre esta diseñada para tareas/trabajos de...</p> <br>
+        <p>(Tutorial basico sobre el uso de la pagina)</p>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <!--Buscador-->
+            <div class="container">
+                <div class="logo">
+                    <img src="assets/UTN_logo-removebg-preview.png" id="busca">
+                </div>
+                <h1>UTN data search</h1>
+                <div class="tools-container">
+                    <form id="product-form" method="post" action="./paginaBusqueda/buscar.php">
+                        <select id="frutas" name="opcion">
+                            <option value="" disabled selected>Buscar por...</option>
+                            <option value="Id">Id</option>
+                            <option value="entry_name">Entry Name</option>
+                            <option value="entry">Entry</option>
+                            <option value="gene_names">Gene Name</option>
+                            <option value="organism">Organism</option>
+                            <option value="protein_names">Protein Name</option>
+                        </select>
+                        <input type="text" name="busqueda" placeholder="Ingresa tu búsqueda" id="searchInput">
+                        <button type="submit" id="searchButton" value="Buscar">Buscar</button>
+                    </form>
+                </div>
+                <table id="resultsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Entry</th>
+                            <th>Reviewed</th>
+                            <th>Entry Name</th>
+                            <th>Protein Name</th>
+                            <th>Gene Name</th>
+                            <th>Organism</th>
+                            <th>Length</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Aquí se mostrarán los resultados de la búsqueda -->
+                    </tbody>
+                </table>
+            </div>
+    </main>
+    <footer class="pie-pagina">
+        <div class="grupo-1">
+            <div class="box">
+                <figure>
+                    <a href="#">
+                        <img src="assets/UTN_logo-removebg-preview.ico" alt="Logo UTN">
+                    </a>
+                </figure>
+            </div>
+            <div class="box" id="contacto">
+                <h2>SOBRE NOSOTROS</h2>
+                <p>Somos pasantes de la escuela Fray Luis Beltran, donde creamos esta pagina para facilitar el filtrado de datos sobre una Base de Datos.</p>
+                
+            </div>
+            <div class="box">
+                <h2>SIGUENOS</h2>
+                <div class="red-social">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-youtube"></a>
+                </div>
+            </div>
+        </div>
+        <div class="grupo-2">
+            <small>&copy; 2023 <b>UTN</b> - Todos los Derechos Reservados.</small>
+        </div>
+    </footer>
+    <script src="./js/script.js"></script>
 </body>
 </html>
